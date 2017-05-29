@@ -17,7 +17,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.ingredients = this.shoppingList.getIngredients();
     this.shoppingListSubscription=this.shoppingList.ingredientChange.subscribe(
       (ingredientse : Ingredient[]) => {
-        console.log("test");
         this.ingredients=ingredientse;
       }
     );
@@ -26,6 +25,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.shoppingListSubscription.unsubscribe();
+  }
+
+  onEditItem(index : number){
+    this.shoppingList.startedEditing.next(index);
   }
 
 }
